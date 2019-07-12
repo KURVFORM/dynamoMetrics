@@ -2,7 +2,7 @@
   "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "scriptMetricsv1",
+  "Name": "scriptMetricsv2",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -12,7 +12,7 @@
     {
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
       "NodeType": "PythonScriptNode",
-      "Code": "# Original Script by EwanO 2018 (Sastrugi Package) \r\n# Use as you like :-)\r\n# This code creates a blank text file in a specified location that\r\n# contains generic data.\r\n\r\nimport clr\r\nimport System\r\nfrom System.IO import Directory\r\n\r\nimport sys\r\n# load python\r\npyt_path = r'C:\\Program Files (x86)\\IronPython 2.7\\Lib'\r\nsys.path.append(pyt_path)\r\n\r\nfrom datetime import datetime\r\n\r\nproject = IN[0]\r\nnumber = IN[1]\r\nscriptname = IN[2]\r\n\r\n# get the current date and time\r\ndatestamp = datetime.today().strftime(\"%Y-%m-%d\")\r\ntimestamp = datetime.now().strftime(\"%H-%M-%S\")\r\n\r\nimport os\r\n\r\n## set the output directory and gather log data\r\ndir = 'ENTER YOUR DIRECTORY LOCATION'\r\n   \r\n# create a directory for each user of a machine\r\nDirectory.CreateDirectory(dir)\r\n\r\n# generate the file name for the log file\r\nfilename = (str(datestamp) + '_' + str(timestamp) + '_' +str(project) + '_' +str(number) + '_' +str(scriptname) + '.txt')\r\n\r\n# create the log file (blank text file)\r\nlogger = open(dir + '\\\\' + filename,'w+')\r\n\r\nOUT = str(\"Run Logged\")\r\n",
+      "Code": "# Original Script by EwanO 2018 (Sastrugi Package) \r\n# Modified and added to by Paul Fassnidge 2019\r\n# This code creates a blank text file in a specified location that\r\n# contains script data in txt file name.\r\n\r\nimport clr\r\nimport System\r\nfrom System.IO import Directory\r\n\r\nimport sys\r\n# load python\r\npyt_path = r'C:\\Program Files (x86)\\IronPython 2.7\\Lib'\r\nsys.path.append(pyt_path)\r\n\r\nfrom datetime import datetime\r\n\r\nproject = IN[0]\r\nnumber = IN[1]\r\nscriptname = IN[2]\r\n\r\n# get the current date and time\r\ndatestamp = datetime.today().strftime(\"%Y-%m-%d\")\r\ntimestamp = datetime.now().strftime(\"%H-%M-%S\")\r\n\r\nimport os\r\n\r\n## set the output directory and gather log data\r\ndir = 'ENTER YOUR DIRECTORY LOCATION'\r\n   \r\n# create a directory for each user of a machine\r\nDirectory.CreateDirectory(dir)\r\n\r\n# generate the file name for the log file\r\nfilename = (str(datestamp) + '_' + str(timestamp) + '_' +str(project) + '_' +str(number) + '_' +str(scriptname) + '.txt')\r\n\r\n# create the log file (blank text file)\r\nlogger = open(dir + '\\\\' + filename,'w+')\r\n\r\nOUT = str(\"Run Logged\")\r\n",
       "VariableInputPorts": true,
       "Id": "da78c5e4ddb34986a534a4b4dec26770",
       "Inputs": [
@@ -312,7 +312,7 @@
     "NodeViews": [
       {
         "ShowGeometry": true,
-        "Name": "Log .txt file",
+        "Name": "Log file",
         "Id": "da78c5e4ddb34986a534a4b4dec26770",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -322,7 +322,7 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "Get Script Name",
+        "Name": "Script",
         "Id": "b947551f18a3415bb146876e94611c63",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -332,13 +332,13 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "Get Project Details",
+        "Name": "Project",
         "Id": "937b7db9ca5047768afb5dfacfe9e86e",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 483.48700838141008,
-        "Y": 375.241981020913
+        "X": 482.68700838141012,
+        "Y": 377.64198102091297
       },
       {
         "ShowGeometry": true,
