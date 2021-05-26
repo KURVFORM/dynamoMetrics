@@ -1,0 +1,450 @@
+{
+  "Uuid": "c4ff7870-62fd-479c-8e47-eb581b397045",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "scriptMetricsv10",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Transaction.Transaction.End@var",
+      "Id": "88253869cbfb4c7284f3527f72b8effd",
+      "Inputs": [
+        {
+          "Id": "6bd98b9d68594850b64c9d935886f15d",
+          "Name": "input",
+          "Description": "An object.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d133b0c209804ff88a57d8fb82f592a8",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Ends the current Dynamo transaction, returning whatever was passed in.\n\nTransaction.End (input: var): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Count@var[]..[]",
+      "Id": "b58949f2fa2a4849ab29bcc669b62507",
+      "Inputs": [
+        {
+          "Id": "a3b7f31b83f34292932fbe4d05c8abbb",
+          "Name": "list",
+          "Description": "List to get the item count of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "95a2900f4d624ebdbec5dd5a1812c85c",
+          "Name": "count",
+          "Description": "List length.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the number of items stored in the given list.\n\nList.Count (list: var[]..[]): int"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.FromObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "4396b9347e204431bb0d5c28690893d7",
+      "Inputs": [
+        {
+          "Id": "3e71443a01a04b68af22db6d4f2ff893",
+          "Name": "obj",
+          "Description": "Object to be serialized",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9dd5a715b9294d72bb8f98875145c7a2",
+          "Name": "str",
+          "Description": "Result of math computation",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Convert an object to a string representation."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#BPE data metrics by PF\r\n\r\nimport clr\r\nimport System\r\nfrom System.IO import Directory\r\n\r\nimport sys\r\n# load python\r\npyt_path = r'C:\\Program Files (x86)\\IronPython 2.7\\Lib'\r\nsys.path.append(pyt_path)\r\n\r\nfrom datetime import datetime\r\n\r\nproject = IN[0]\r\n\r\n# get the current date and time\r\nstarttime = datetime.now().strftime(\"%H-%M-%S\")\r\n\r\nimport os\r\n\r\nOUT = starttime\r\n\r\n\r\n",
+      "VariableInputPorts": true,
+      "Id": "147aedd5e6cd41b0803ed10f488b64fb",
+      "Inputs": [
+        {
+          "Id": "7a61a73ae9fe40d3a72e26e223db7d41",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f7e39968f036448cbfa388640830f898",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.Object.IsNull@var",
+      "Id": "436b8a21928e4a958845f96603193063",
+      "Inputs": [
+        {
+          "Id": "5544e7b7c1d24407b3be768e3c3cb3be",
+          "Name": "obj",
+          "Description": "Object to test.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a25b9892494747b0857fa726dd660d2a",
+          "Name": "bool",
+          "Description": "Whether object is null.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Determines the if the given object is null.\n\nObject.IsNull (obj: var): bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[passthrough,waitfor][0];",
+      "Id": "a4243950291847bc8399d3996b6ff59d",
+      "Inputs": [
+        {
+          "Id": "5311c48472654a59a060e25e604fa7f1",
+          "Name": "passthrough",
+          "Description": "passthrough",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "499ae245ba0f4fe6ba2652196d777129",
+          "Name": "waitfor",
+          "Description": "waitfor",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6a9edaca8b804cc08b4ceab85c899bf2",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#HDT data analytics by PF\r\n\r\nimport clr\r\nimport sys\r\n\r\nclr.AddReference(\"RevitServices\")\r\nclr.AddReference('DynamoRevitDS')\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\n\r\npyt_path = r'C:\\Program Files (x86)\\IronPython 2.7\\Lib'\r\nsys.path.append(pyt_path)\r\n\r\nimport clr\r\nimport System\r\nimport sys\r\nimport Dynamo \r\nimport os\r\n\r\nfrom System.IO import Directory\r\nfrom System import Environment\r\n\r\nDynamoRevit=Dynamo.Applications.DynamoRevit()\r\n\r\nfrom datetime import datetime\r\n\r\n#Get doc and dynamo stuff\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\napp = DocumentManager.Instance.CurrentUIApplication.Application\r\nscriptname=DynamoRevit.RevitDynamoModel.CurrentWorkspace.FileName\r\n\r\nname=os.path.basename(scriptname)\r\nfilename,extention=os.path.splitext(name)\r\nprojinfo = doc.ProjectInformation\r\n\r\npassthrough = IN[0]\r\nstarttime = IN[1]\r\nrunit = IN[2]\r\ncount = IN[3]\r\nproject = projinfo.Name\r\nnumber = projinfo.Number\r\nscriptname = filename\r\nuser = Environment.UserName;\r\n\r\n# get the current date and time\r\ndatestamp = datetime.today().strftime(\"%Y-%m-%d\")\r\nendtime = datetime.now().strftime(\"%H-%M-%S\")\r\n\r\ndir = r\"C:\\Users\\{}\\Hydrock Consultants Ltd\\BIM - Documents\\03 Hydrock BIM Standards and Templates\\07 Automation\\Analytics\".format(user)\r\ndirQ = r\"Q:\\Office\\IT Software\\Dynamo\\data\"\r\n\r\n# create a directory\r\nDirectory.CreateDirectory(dir)\r\nDirectory.CreateDirectory(dirQ)\r\n\r\n\r\n# generate the file name\r\nfilename = (str(datestamp) + '_' +str(endtime) + '_' +str(project) + '_' +str(number) + '_' +str(scriptname) + '_' +str(starttime) + '_' +str(user) + '_' +str(count) + '_' + '.txt')\r\n\r\nfilenameQ = (str(datestamp) + '_' +str(endtime) + '_' +str(project) + '_' +str(number) + '_' +str(scriptname) + '_' +str(starttime) + '_' +str(user) + '_' +str(count) + '.txt')\r\n\r\n# create the log file\r\n\r\nif runit == True:\r\n  pass\r\nelse:\r\n  logger = open(dir + '\\\\' + filename,'w+')\r\n  loggerQ = open(dirQ + '\\\\' + filenameQ,'w+')\r\n\r\nOUT = str(\"Dynamo Analytics Complete\")\r\n\r\n",
+      "VariableInputPorts": true,
+      "Id": "55b5ad9b23504e50878d58029a740a89",
+      "Inputs": [
+        {
+          "Id": "61b55bee0c8d43afa501553611391a66",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4c9c0650255d4c09be2f11fa9288bb07",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b329558491ec47168bc4753cd51bf524",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f83f68dc6fff442b96d4b6b7ebc72cbe",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e719fb93fba04d3fb42560ff174d121f",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d133b0c209804ff88a57d8fb82f592a8",
+      "End": "5311c48472654a59a060e25e604fa7f1",
+      "Id": "d11fca23eb454a8587d1db3b885f0f4d"
+    },
+    {
+      "Start": "95a2900f4d624ebdbec5dd5a1812c85c",
+      "End": "3e71443a01a04b68af22db6d4f2ff893",
+      "Id": "07a90e35616342dfb8264fb669e1fbb9"
+    },
+    {
+      "Start": "9dd5a715b9294d72bb8f98875145c7a2",
+      "End": "f83f68dc6fff442b96d4b6b7ebc72cbe",
+      "Id": "67f316e980ed4eb58116890bdcb73d84"
+    },
+    {
+      "Start": "f7e39968f036448cbfa388640830f898",
+      "End": "499ae245ba0f4fe6ba2652196d777129",
+      "Id": "be86bbb663734d34a67b1ae9e69f9c56"
+    },
+    {
+      "Start": "f7e39968f036448cbfa388640830f898",
+      "End": "4c9c0650255d4c09be2f11fa9288bb07",
+      "Id": "79c139e7c5124ff696ffd02641ef840e"
+    },
+    {
+      "Start": "a25b9892494747b0857fa726dd660d2a",
+      "End": "b329558491ec47168bc4753cd51bf524",
+      "Id": "680824195a6b4624a6087da6a473ff07"
+    },
+    {
+      "Start": "6a9edaca8b804cc08b4ceab85c899bf2",
+      "End": "61b55bee0c8d43afa501553611391a66",
+      "Id": "0d902c6c3e2f4eaaa8feee6a1f9bf56d"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.3.8810",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Transaction.End",
+        "Id": "88253869cbfb4c7284f3527f72b8effd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 866.49020771513358,
+        "Y": 354.47842140114722
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Count",
+        "Id": "b58949f2fa2a4849ab29bcc669b62507",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 747.06748218593862,
+        "Y": 715.5247392693135
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String from Object",
+        "Id": "4396b9347e204431bb0d5c28690893d7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 928.29048993503909,
+        "Y": 715.90259858598358
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Log start time",
+        "Id": "147aedd5e6cd41b0803ed10f488b64fb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1095.0804578923999,
+        "Y": 453.4851428249126
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Object.IsNull",
+        "Id": "436b8a21928e4a958845f96603193063",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1093.3138513369031,
+        "Y": 547.209510310418
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Control",
+        "Id": "a4243950291847bc8399d3996b6ff59d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1092.549344919144,
+        "Y": 349.75311572700309
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "55b5ad9b23504e50878d58029a740a89",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1293.2250467686008,
+        "Y": 451.19888187690003
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "29783fe981774f3590c794a4c86e2618",
+        "Title": "End Process",
+        "Nodes": [
+          "88253869cbfb4c7284f3527f72b8effd"
+        ],
+        "Left": 856.49020771513358,
+        "Top": 301.27842140114723,
+        "Width": 213.6,
+        "Height": 145.79999999999998,
+        "FontSize": 36.0,
+        "InitialTop": 354.47842140114722,
+        "InitialHeight": 122.6,
+        "TextblockHeight": 43.2,
+        "Background": "#FFFF7BAC"
+      },
+      {
+        "Id": "07a8f51e8419431382f07648fc952a17",
+        "Title": "Validate Script Run",
+        "Nodes": [
+          "b58949f2fa2a4849ab29bcc669b62507",
+          "4396b9347e204431bb0d5c28690893d7"
+        ],
+        "Left": 737.06748218593862,
+        "Top": 662.32473926931345,
+        "Width": 326.8230077491005,
+        "Height": 146.17785931667012,
+        "FontSize": 36.0,
+        "InitialTop": 715.5247392693135,
+        "InitialHeight": 122.97785931667008,
+        "TextblockHeight": 43.2,
+        "Background": "#FFB5B5B5"
+      },
+      {
+        "Id": "0485949524df45bfbe09aab5318a1d0d",
+        "Title": "data",
+        "Nodes": [
+          "147aedd5e6cd41b0803ed10f488b64fb",
+          "a4243950291847bc8399d3996b6ff59d",
+          "55b5ad9b23504e50878d58029a740a89",
+          "436b8a21928e4a958845f96603193063"
+        ],
+        "Left": 1082.549344919144,
+        "Top": 296.5531157270031,
+        "Width": 345.47570184945681,
+        "Height": 343.25639458341482,
+        "FontSize": 36.0,
+        "InitialTop": 349.75311572700309,
+        "InitialHeight": 314.22375363385993,
+        "TextblockHeight": 43.2,
+        "Background": "#FFFFAA45"
+      }
+    ],
+    "X": -544.604,
+    "Y": -63.158000000000072,
+    "Zoom": 0.8425
+  }
+}
